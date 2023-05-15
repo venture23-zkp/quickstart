@@ -91,6 +91,7 @@ const shouldRemoveGasLimitForL2GasEstimate = (networkName: NetworkName) => {
     case NetworkName.EthereumRopsten_DEPRECATED:
     case NetworkName.EthereumGoerli:
     case NetworkName.PolygonMumbai:
+    case NetworkName.CeloAlfajores:
     case NetworkName.Hardhat:
       return false;
   }

@@ -33,6 +33,8 @@ const sourceNameForNetwork = (networkName: NetworkName): string => {
       return 'arbitrum-goerli';
     case NetworkName.PolygonMumbai:
       return 'mumbai';
+    case NetworkName.CeloAlfajores:
+      return 'celo-alfajores';
     case NetworkName.Railgun:
     case NetworkName.EthereumRopsten_DEPRECATED:
     case NetworkName.Hardhat:
