@@ -137,7 +137,7 @@ export const startRailgunEngine = (
       walletSource,
       db,
       artifactGetterDownloadJustInTime,
-      quickSyncGraph,
+      undefined,
       shouldDebug ? createEngineDebugger() : undefined,
       skipMerkletreeScans,
     );
