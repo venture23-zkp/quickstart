@@ -46,6 +46,7 @@ import type { MaticTypes } from './.graphclient/sources/matic/types';
 import type { MumbaiTypes } from './.graphclient/sources/mumbai/types';
 import type { ArbitrumGoerliTypes } from './.graphclient/sources/arbitrum-goerli/types';
 import type { EthereumTypes } from './.graphclient/sources/ethereum/types';
+import type { CeloAlfajoresTypes } from './.graphclient/sources/celo-alfajores/types';
 
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -2753,6 +2754,7 @@ export type DirectiveResolvers<ContextType = MeshContext> = ResolversObject<{
 }>;
 
 export type MeshContext = GoerliTypes.Context &
+  CeloAlfajoresTypes.Context &
   ArbitrumGoerliTypes.Context &
   MumbaiTypes.Context &
   EthereumTypes.Context &
@@ -2801,6 +2803,11 @@ const importFn: ImportFn = <T>(moduleId: string) => {
         './.graphclient/sources/arbitrum-one/introspectionSchema'
       ) as T;
 
+    case '.graphclient/sources/celo-alfajores/introspectionSchema':
+      return import(
+        './.graphclient/sources/celo-alfajores/introspectionSchema'
+      ) as T;
+
     default:
       return Promise.reject(
         new Error(`Cannot find module '${relativeModuleId}'.`),
@@ -2844,6 +2851,7 @@ export async function getMeshOptions(): Promise<GetMeshOptions> {
   const mumbaiTransforms = [];
   const arbitrumOneTransforms = [];
   const arbitrumGoerliTransforms = [];
+  const celoAlfajoresTransforms = [];
   const additionalTypeDefs = [] as any[];
   const ethereumHandler = new GraphqlHandler({
     name: 'ethereum',
@@ -2936,6 +2944,19 @@ export async function getMeshOptions(): Promise<GetMeshOptions> {
     logger: logger.child('arbitrum-goerli'),
     importFn,
   });
+  const celoAlfajoresHandler = new GraphqlHandler({
+    name: 'celo-alfajores',
+    config: {
+      endpoint:
+        'https://api.studio.thegraph.com/query/44973/railgun-celo-alfajores/v1.4',
+    },
+    baseDir,
+    cache,
+    pubsub,
+    store: sourcesStore.child('celo-alfajores'),
+    logger: logger.child('celo-alfajores'),
+    importFn,
+  });
   sources[0] = {
     name: 'ethereum',
     handler: ethereumHandler,
@@ -2970,6 +2991,11 @@ export async function getMeshOptions(): Promise<GetMeshOptions> {
     name: 'arbitrum-goerli',
     handler: arbitrumGoerliHandler,
     transforms: arbitrumGoerliTransforms,
+  };
+  sources[7] = {
+    name: 'celo-alfajores',
+    handler: celoAlfajoresHandler,
+    transforms: celoAlfajoresTransforms,
   };
   const additionalResolvers = [] as any[];
   const merger = new (StitchingMerger as any)({
