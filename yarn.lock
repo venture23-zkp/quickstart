@@ -2291,9 +2291,9 @@
     levelup "^5.1.1"
     msgpack-lite "^0.1.26"
 
-"@railgun-community/shared-models@git://github.com/venture23-zkp/shared-models.git#89b4695d58249e735751b2a1d18add012706411f":
+"@railgun-community/shared-models@git://github.com/venture23-zkp/shared-models.git#99963fe87140cfd3ac497d938533d5cd4de332bf":
   version "4.2.2"
-  resolved "git://github.com/venture23-zkp/shared-models.git#89b4695d58249e735751b2a1d18add012706411f"
+  resolved "git://github.com/venture23-zkp/shared-models.git#99963fe87140cfd3ac497d938533d5cd4de332bf"
   dependencies:
     "@ethersproject/contracts" "^5.7.0"
     "@ethersproject/transactions" "^5.7.0"
