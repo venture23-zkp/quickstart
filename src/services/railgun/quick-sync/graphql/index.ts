@@ -2909,7 +2909,7 @@ export async function getMeshOptions(): Promise<GetMeshOptions> {
     name: 'mumbai',
     config: {
       endpoint:
-        'https://api.thegraph.com/subgraphs/name/railgun-community/railgun-v2-mumbai',
+        'https://api.studio.thegraph.com/query/44973/railgun-mumbai/v0.0.1'
     },
     baseDir,
     cache,
